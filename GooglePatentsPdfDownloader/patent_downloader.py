@@ -6,6 +6,7 @@ import time
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service
 from bs4 import BeautifulSoup
 
 
@@ -89,13 +90,14 @@ class PatentDownloader:
                 patent = re.sub(remove_kind_code + "$", "", patent)
         
         # get selenium started and open url
+        service = Service(executable_path=self.driver_file)
         if self.option:
-            driver = webdriver.Chrome(executable_path=self.driver_file, options=self.option)
+            driver = webdriver.Chrome(service=service, options=self.option)
         else:
-            driver = webdriver.Chrome(executable_path=self.driver_file)
+            driver = webdriver.Chrome(service=service)
         driver.get(self.url)
     
-        element = driver.find_element_by_name('q')
+        element = driver.find_element('name', 'q')
         element.send_keys(patent)
         element.send_keys(Keys.RETURN)
         time.sleep(waiting_time)  # wait X secs
