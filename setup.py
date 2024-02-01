@@ -8,7 +8,7 @@ with open('LICENSE') as f:
 
 setup(
     name = 'GooglePatentsPdfDownloader',
-    version = '0.1.0',
+    version = '0.1.1',
     description = 'Download patents as PDF documents from Google Patents',
     long_description = readme,
     author = 'Lorenz Brachtendorf',
