@@ -20,3 +20,4 @@ setup(
     package_data = {'docs/data': ['patents.txt']},
     include_package_data = True
 )
+
